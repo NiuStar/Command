@@ -55,9 +55,8 @@ func ExecCommandWithResult(cmd,dir string) (string,error) {
 	go func() {
 		msg1 := bytes.Buffer{}
 		for {
-			r,err :=child.ReadAll()
+			r,err := child.ReadAll()
 			if err == io.EOF {
-				//fmt.Println("Over",msg1.String())
 				msg <- msg1.String()
 				return
 			} else if err != nil {
@@ -65,11 +64,11 @@ func ExecCommandWithResult(cmd,dir string) (string,error) {
 				msg <- msg1.String()
 				return
 			}
-			//fmt.Println("r:",r)
 			msg1.WriteString(r)
 		}
 	}()
 	if err := child.Wait(); err != nil {
+
 		return <-msg,err
 	}
 
