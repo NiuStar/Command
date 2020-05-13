@@ -40,7 +40,7 @@ func ExecCommandNoAction(cmd,dir string) error {
 
 
 func ExecCommandWithResult(cmd,dir string) (string,error) {
-	fmt.Println("order:",cmd)
+	//fmt.Println("order:",cmd)
 	child, err := CommandCreate(cmd)
 	if err != nil {
 		return "",err
